@@ -14,7 +14,7 @@ D = np.array([130, 220])                 # Nhu cầu sản phẩm D_j
 X = cp.Variable((N, M), nonneg=True)
 # Hàm mục tiêu: Minimize Z
 objective = cp.Minimize(cp.sum(cp.multiply(C, X)))
-# print("X=", objective)
+print("X=", objective)
 
 # Ràng buộc
 constraints = [

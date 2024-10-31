@@ -5,16 +5,15 @@ import matplotlib.pyplot as plt
 # Dữ liệu đầu vào
 N = 3  # Số nhà máy
 M = 2  # Số sản phẩm
-
 C = np.array([[4, 6], [5, 3], [7, 8]])  # Chi phí sản xuất C_ij
-P = np.array([100, 150, 200])            # Năng lực sản xuất P_i
-D = np.array([130, 220])                 # Nhu cầu sản phẩm D_j
+P = np.array([100, 150, 200])  # Năng lực sản xuất P_i
+D = np.array([130, 220])  # Nhu cầu sản phẩm D_j
 
 # Biến số X_ij
 X = cp.Variable((N, M), nonneg=True)
 # Hàm mục tiêu: Minimize Z
 objective = cp.Minimize(cp.sum(cp.multiply(C, X)))
-# print("X=", objective)
+print("X=", objective)
 
 # Ràng buộc
 constraints = [
@@ -35,9 +34,8 @@ print("Số lượng sản phẩm sản xuất tại các nhà máy (sau khi là
 
 total_production_per_factory = np.sum(X.value, axis=1)
 
-# Biểu đồ tổng sản lượng sản xuất của mỗi nhà máy
 plt.figure(figsize=(10, 6))
-# plt.subplot(2, 1, 1)
+plt.subplot(2, 1, 1)
 plt.bar([f"Nhà máy {i+1}" for i in range(N)],
         total_production_per_factory, color='skyblue')
 plt.xlabel("Nhà máy")
@@ -46,8 +44,8 @@ plt.title("Biểu đồ tổng sản lượng sản xuất của mỗi nhà máy
 plt.show()
 
 # Chi phí sản xuất tại từng nhà máy cho từng sản phẩm
-plt.figure(figsize=(10, 6))
-# plt.subplot(2, 1, 2)
+# plt.figure(figsize=(10, 6))
+plt.subplot(2, 1, 2)
 bar_width = 0.35
 index = np.arange(N)
 
